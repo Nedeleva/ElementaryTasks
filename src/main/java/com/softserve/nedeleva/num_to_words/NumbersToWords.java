@@ -1,4 +1,4 @@
-package com.softserve.nedeleva.numtowords;
+package com.softserve.nedeleva.num_to_words;
 
 import java.util.Scanner;
 

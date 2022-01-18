@@ -36,11 +36,11 @@ public class ListOfTriangles {
 
     private static void solution() {
         List<Triangle> triangles = new ArrayList<>();
-        String answer = "y";
+        String answer;
         do {
             triangles.add(readTriangle());
             System.out.println("Do you want to add another triangle? (y/yes or n/no)");
-            answer = sc.nextLine();
+            sc.nextLine();
             answer = sc.nextLine();
         }
         while (answer.equalsIgnoreCase("y") || answer.equalsIgnoreCase("yes"));

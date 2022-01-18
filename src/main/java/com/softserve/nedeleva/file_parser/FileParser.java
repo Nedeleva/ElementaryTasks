@@ -16,13 +16,13 @@ import java.util.Scanner;
  */
 public class FileParser {
 
-    public static void countNumberOfOccurrences(String filePath, int lineNumber) throws IOException {
+    private static void countNumberOfOccurrences(String filePath, int lineNumber) throws IOException {
         String line = Files.readAllLines(Paths.get(filePath)).get(lineNumber);
         int numberOfOccurrences = (int) Arrays.stream(line.split(" ")).count();
         System.out.println(numberOfOccurrences);
     }
 
-    private static void changeStr(String filePath, String searchLine, String newLine) throws IOException {
+    private static void changeSearchLineToNewLine(String filePath, String searchLine, String newLine) throws IOException {
         BufferedReader bufferedReader = new BufferedReader(new FileReader(filePath));
         String line;
         StringBuilder sb = new StringBuilder();
@@ -34,41 +34,18 @@ public class FileParser {
         }
     }
 
-    // /Users/delitelnula/Documents/Test/Hello.txt
-    //Hello, Anna!
-    //Hello, World!
-    //Edify
     public static void main(String[] args) throws IOException {
         Scanner sc = new Scanner(System.in);
         System.out.println("Укажите путь к файлу:");
         String filePath = sc.nextLine();
-//        System.out.println("Укажите номер строки для подсчета(счет с нуля):");
-//        int lineNumber = sc.nextInt();
-//        System.out.println("Количество слов в строке:");
-//        FileParser.countNumberOfOccurrences(filePath, lineNumber);
-        System.out.println("Введите строку для поиска:");
-        String searchLine = sc.nextLine();
-        System.out.println("Введите строку для замены:");
-        String newLine = sc.nextLine();
-        FileParser.changeStr(filePath, searchLine, newLine);
+        System.out.println("Укажите номер строки для подсчета(счет с нуля):");
+        int lineNumber = sc.nextInt();
+        System.out.println("Количество слов в строке:");
+        FileParser.countNumberOfOccurrences(filePath, lineNumber);
+//        System.out.println("Введите строку для поиска:");
+//        String searchLine = sc.nextLine();
+//        System.out.println("Введите строку для замены:");
+//        String newLine = sc.nextLine();
+//        FileParser.changeSearchLineToNewLine(filePath, searchLine, newLine);
     }
 }
-
-
-//    private static void replace(String filePath, String newFilePath, String stringToReplace, String replaceWith) throws IOException {
-//        BufferedReader in = new BufferedReader(new FileReader(filePath));
-//        BufferedWriter out = new BufferedWriter(new FileWriter(newFilePath));
-//        String line;
-//        while ((line = in.readLine()) != null) {
-//            if (line.contains(stringToReplace))
-//                line = line.replace(stringToReplace, replaceWith);
-//            out.write(line);
-//            out.newLine();
-//        }
-//        in.close();
-//        out.close();
-//    }
-
-// String filePath1 = sc.nextLine();
-// String newFilePath = sc.nextLine();
-// FileParser.replace(filePath1, newFilePath, before, after);

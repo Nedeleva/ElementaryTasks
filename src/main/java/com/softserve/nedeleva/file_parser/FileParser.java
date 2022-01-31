@@ -1,9 +1,6 @@
 package com.softserve.nedeleva.file_parser;
 
 import java.io.*;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.util.Arrays;
 import java.util.Scanner;
 
 /**
@@ -16,10 +13,19 @@ import java.util.Scanner;
  */
 public class FileParser {
 
-    private static void countNumberOfOccurrences(String filePath, int lineNumber) throws IOException {
-        String line = Files.readAllLines(Paths.get(filePath)).get(lineNumber);
-        int numberOfOccurrences = (int) Arrays.stream(line.split(" ")).count();
-        System.out.println(numberOfOccurrences);
+    private static final String FILE_PATH = "/Users/delitelnula/Documents/SoftServe/ElementaryTasks/src/main/resources/Hello.txt";
+
+    private static void countNumberOfOccurrences(String fileName, String mark) throws IOException {
+        String line;
+        int count = 0;
+        FileReader fileReader = new FileReader(fileName);
+        BufferedReader bufferedReader = new BufferedReader(fileReader);
+        while ((line = bufferedReader.readLine()) != null) {
+            if (line.contains(mark)) {
+                count++;
+            }
+        }
+        System.out.println(count);
     }
 
     private static void changeSearchLineToNewLine(String filePath, String searchLine, String newLine) throws IOException {
@@ -34,18 +40,22 @@ public class FileParser {
         }
     }
 
-    public static void main(String[] args) throws IOException {
+    private static void solution() throws IOException {
         Scanner sc = new Scanner(System.in);
-        System.out.println("Укажите путь к файлу:");
-        String filePath = sc.nextLine();
-        System.out.println("Укажите номер строки для подсчета(счет с нуля):");
-        int lineNumber = sc.nextInt();
-        System.out.println("Количество слов в строке:");
-        FileParser.countNumberOfOccurrences(filePath, lineNumber);
-//        System.out.println("Введите строку для поиска:");
-//        String searchLine = sc.nextLine();
-//        System.out.println("Введите строку для замены:");
-//        String newLine = sc.nextLine();
-//        FileParser.changeSearchLineToNewLine(filePath, searchLine, newLine);
+        System.out.println("Specify a word to count occurrences:");
+        String mark = sc.nextLine();
+        System.out.println("Number of occurrences in the file:");
+        FileParser.countNumberOfOccurrences(FILE_PATH, mark);
+        do {
+            System.out.println("Enter a search line:");
+            String searchLine = sc.nextLine();
+            System.out.println("Enter a line to replace:");
+            String newLine = sc.nextLine();
+            FileParser.changeSearchLineToNewLine(FILE_PATH, searchLine, newLine);
+        } while (!sc.hasNextLine());
+    }
+
+    public static void main(String[] args) throws IOException {
+        FileParser.solution();
     }
 }

@@ -20,39 +20,46 @@ import java.util.*;
  */
 public class ListOfTriangles {
 
-    private static Scanner sc = new Scanner(System.in);
+    public static Scanner in = new Scanner(System.in);
 
-    private static Triangle readTriangle() {
-        String name = sc.nextLine();
-        double firstSide = sc.nextDouble();
-        double secondSide = sc.nextDouble();
-        double thirdSide = sc.nextDouble();
+    public static Triangle createTriangle() {
+        System.out.println("Specify the name for the triangle:");
+        String name = in.nextLine();
+        System.out.println("Specify the first side:");
+        double firstSide = in.nextDouble();
+        System.out.println("Specify the second side:");
+        double secondSide = in.nextDouble();
+        System.out.println("Specify the third side:");
+        double thirdSide = in.nextDouble();
         return new Triangle(name, firstSide, secondSide, thirdSide);
     }
 
-    private static void createTriangle(Triangle triangle) {
-        System.out.println("[" + triangle.getName() + "]: " + triangle.getSquare() + " сm");
+    public static void printTriangle(Triangle triangle) {
+        System.out.println("[" + triangle.getName() + "]: " + triangle.getArea() + " сm");
     }
 
-    private static void solution() {
+    public static void getSortingListOfTriangles() {
         List<Triangle> triangles = new ArrayList<>();
         String answer;
         do {
-            triangles.add(readTriangle());
+            triangles.add(createTriangle());
             System.out.println("Do you want to add another triangle? (y/yes or n/no)");
-            sc.nextLine();
-            answer = sc.nextLine();
+            in.nextLine();
+            answer = in.nextLine();
         }
         while (answer.equalsIgnoreCase("y") || answer.equalsIgnoreCase("yes"));
-        triangles.sort(Comparator.comparing(Triangle::getSquare));
+        triangles.sort(Comparator.comparing(Triangle::getArea));
         Collections.reverse(triangles);
 
-        for (int i = 0; i < triangles.size(); i++) {
-            createTriangle(triangles.get(i));
+        System.out.println("============= Triangles list: ===============");
+        for (Triangle triangle : triangles) {
+            if (triangle.getArea() > 0) {
+                printTriangle(triangle);
+            }
         }
     }
 
     public static void main(String[] args) {
-        ListOfTriangles.solution();
+        ListOfTriangles.getSortingListOfTriangles();
     }
 }

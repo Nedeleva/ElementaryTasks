@@ -4,12 +4,11 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
-
 public class SortTrianglesByTheMap {
 
-    private static final Scanner in = new Scanner(System.in);
+    public static Scanner in = new Scanner(System.in);
 
-    public static void readAndCreateList() {
+    public static void readAndCreateListOfTriangles() {
         String answer;
         Map<String, Double> map = new HashMap<>();
         do {
@@ -18,7 +17,7 @@ public class SortTrianglesByTheMap {
             double side2 = in.nextDouble();
             double side3 = in.nextDouble();
             Triangle triangle = new Triangle(name, side1, side2, side3);
-            map.put(triangle.getName(), triangle.getSquare());
+            map.put(triangle.getName(), triangle.getArea());
             System.out.println("Do you want to add one more?");
             in.nextLine();
             answer = in.nextLine();
@@ -30,6 +29,6 @@ public class SortTrianglesByTheMap {
     }
 
     public static void main(String[] args) {
-        SortTrianglesByTheMap.readAndCreateList();
+        SortTrianglesByTheMap.readAndCreateListOfTriangles();
     }
 }

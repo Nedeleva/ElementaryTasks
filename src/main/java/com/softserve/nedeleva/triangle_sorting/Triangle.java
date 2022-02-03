@@ -7,7 +7,7 @@ public class Triangle {
     public double thirdSide;
 
     public Triangle(String name, double firstSide, double secondSide, double thirdSide) {
-        if (firstSide + secondSide < thirdSide || firstSide + thirdSide < secondSide || thirdSide + secondSide < firstSide) {
+        if (firstSide + secondSide <= thirdSide || firstSide + thirdSide <= secondSide || thirdSide + secondSide <= firstSide) {
             System.out.println("Incorrect values. Please try again");
         }
         this.name = name;
